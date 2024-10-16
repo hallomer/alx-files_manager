@@ -1,18 +1,20 @@
 import dbClient from '../utils/db';
-import { expect } from 'chai';
 
-describe('DB Client', () => {
+describe('dB Client', () => {
   it('should be alive', () => {
-    expect(dbClient.isAlive()).to.be.true;
+    expect.assertions(1);
+    expect(dbClient.isAlive()).toBe(true);
   });
 
   it('should return correct number of users', async () => {
+    expect.assertions(1);
     const usersCount = await dbClient.nbUsers();
-    expect(usersCount).to.be.a('number');
+    expect(usersCount).toStrictEqual(expect.any(Number));
   });
 
   it('should return correct number of files', async () => {
+    expect.assertions(1);
     const filesCount = await dbClient.nbFiles();
-    expect(filesCount).to.be.a('number');
+    expect(filesCount).toStrictEqual(expect.any(Number));
   });
 });

@@ -1,7 +1,5 @@
-// controllers/UsersController.js
-import { ObjectId } from 'mongodb';
-import dbClient from '../utils/db';
 import sha1 from 'sha1';
+import dbClient from '../utils/db';
 
 class UsersController {
   static async postNew(req, res) {
@@ -16,7 +14,7 @@ class UsersController {
     const hashedPassword = sha1(password);
     const newUser = await dbClient.db.collection('users').insertOne({ email, password: hashedPassword });
 
-    res.status(201).json({ id: newUser.insertedId, email });
+    return res.status(201).json({ id: newUser.insertedId, email });
   }
 }
 
